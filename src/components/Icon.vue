@@ -1,5 +1,5 @@
 <template>
-  <component :is="icon"/>
+  <component :is="`icon-${icon}`"/>
 </template>
 
 <script>
@@ -8,11 +8,12 @@
 import * as Icons from '../assets/icons'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
+import mapKeys from 'lodash/mapKeys'
 
 export default {
   name: 'Icon',
   components: {
-    ...Icons,
+    ...mapKeys(Icons, (icon, name) => `Icon${name}`),
   },
   props: {
     /** Refers to the SVG file name in `@/assets/icons` */
