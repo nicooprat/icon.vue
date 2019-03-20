@@ -6,6 +6,8 @@
 // Use babel-plugin-wildcard to load all icons (need relative path)
 // eslint-disable-next-line import/no-unresolved, import/no-extraneous-dependencies
 import * as Icons from '../assets/icons'
+import upperFirst from 'lodash/upperFirst'
+import camelCase from 'lodash/camelCase'
 
 export default {
   name: 'Icon',
@@ -17,6 +19,9 @@ export default {
     icon: {
       type: String,
       required: true,
+      validator(icon) {
+        return Object.keys(Icons).includes(upperFirst(camelCase(icon)))
+      },
     },
   },
   install(Vue) {
